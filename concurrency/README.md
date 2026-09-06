@@ -80,6 +80,11 @@ we can add spwan goroutines but how to stop them ?
 
 go provides thread-safe counter. it has 3 methods
 
+waitGroup is a great way to to wait for concurrent operations to complete
+when we either don't care about result of the concurrent operations,
+or we have other means of collecting their resutls.
+if neither of those are true, use _channels_ and _select_
+
 > what's the thread-safe ?
 
 - Add(n): Increment counter by n (tell it how many tasks to wait for).
@@ -89,15 +94,7 @@ go provides thread-safe counter. it has 3 methods
 let's implement that in our previos code
 another task ?
 
-```
-Write a program that processes 5 items in parallel. Each item takes 200ms to process.
-
-Use a loop to launch 5 goroutines.
-
-Use sync.WaitGroup to ensure main() waits for all 5 to complete.
-
-Ensure loop variables are passed safely so item IDs print correctly (1, 2, 3, 4, 5 in any order).
-```
-
 okay that's it ?
 maybe i need some more practice and have to solve some questions before moving forward
+
+#### sync.Mutex

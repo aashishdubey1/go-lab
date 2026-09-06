@@ -1,7 +1,7 @@
 package main
 
 import (
-	webchecker "github.com/aashishdubey1/go-lab/concurrency/webChecker"
+	"github.com/aashishdubey1/go-lab/concurrency/counter"
 )
 
 // func fetchData(source string,wg *sync.WaitGroup) {
@@ -40,5 +40,6 @@ func main() {
 	// wg.Wait()
 
 
-	webchecker.Run()
+	// webchecker.Run()
+	counter.Run()
 }
