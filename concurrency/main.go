@@ -1,7 +1,7 @@
 package main
 
 import (
-	jobprocessor "github.com/aashishdubey1/go-lab/concurrency/jobProcessor"
+	"github.com/aashishdubey1/go-lab/concurrency/channels"
 )
 
 // func fetchData(source string,wg *sync.WaitGroup) {
@@ -39,5 +39,6 @@ func main() {
 
 	// webchecker.Run()
 	// counter.Run()
-	jobprocessor.Run()
+	// jobprocessor.Run()
+	channels.Run()
 }

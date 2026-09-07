@@ -98,3 +98,48 @@ okay that's it ?
 maybe i need some more practice and have to solve some questions before moving forward
 
 #### sync.Mutex
+
+#### Channels
+
+> Do not communicate by sharing memeory, instead share memory by communicating
+
+A mutex protects memory that both sides touch.
+A channel is a pipe, one side puts a value in, the other takes it out,
+and Go guarantees the handoff is safe.
+Ownership of the data moves through the pipe instead of being shared.
+
+This model comes from CSP (Communicating Sequential Processes)
+instead of goroutines reading/writing shared memory,
+they run independently and exchange messages through channels
+
+**note dumb**
+
+- important thing is not necessarily "goroutine 1 sends first and goroutine 2 receives second."
+  - Instead, they _synchronize through the channel_.
+  - sender wait until the reciever is ready
+  - reciever wait until the sender is ready
+  - either way they eventually meets
+- Channel → used for communication/data sharing between goroutines.
+- make(chan int) → creates a channel that carries int.
+- ch <- 42 → sends 42 into the channel.
+- v := <-ch → receives one value from the channel.
+- v, ok := <-ch → receives a value and checks whether the receive succeeded.
+- Unbuffered channel → capacity 0; sender and receiver must synchronize.
+- Buffered channel → has storage capacity, e.g. make(chan int, 3).
+- Buffered channel can hold values until its buffer becomes full.
+- Sending to a full channel → sender blocks.
+- Receiving from an empty channel → receiver blocks.
+- A blocked operation waits until the other side makes the operation possible.
+- If nobody can make progress, the program can deadlock.
+- close(ch) → tells receivers "no more values will be sent."
+- Closing a channel does not remove values already stored in it.
+- Receiving from a closed channel with remaining values → gets the value with ok = true.
+- Receiving from a closed + empty channel → gets the type's zero value with ok = false.
+- for v := range ch → keeps receiving until the channel is closed and empty.
+- The goroutine that produces/sends values normally closes the channel.
+- go func() { ... }() → runs the function in a separate goroutine.
+- Channels allow goroutines to communicate and synchronize.
+- With an unbuffered channel, sender can wait for receiver, and receiver can wait for sender.
+- Channel operations don't wait for a fixed amount of time; they wait until the operation can proceed.
+- Buffered channels behave like a FIFO queue → first value sent is normally the first value received.
+- Empty buffer slots don't contain nil or 0; they're simply unused capacity.
