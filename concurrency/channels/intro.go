@@ -1,6 +1,7 @@
 package channels
 
 import (
+	"fmt"
 	"sync"
 )
 
@@ -12,12 +13,53 @@ func compute(ch chan int) {
 	ch <- sum
 }
 
-func printId(id int, wg *sync.WaitGroup,ch chan int) { 
+func printId(id int, wg *sync.WaitGroup, ch chan int) {
 	defer wg.Done()
 	ch <- id
 }
 
+type Job struct {
+	Id int
+}
+type Result struct {
+	job    Job
+	status string
+}
+
+func worker(job chan Job, result chan Result,wg *sync.WaitGroup) {
+	defer wg.Done()
+	for val := range job { 
+		result <- Result{job: val,status: "done"}
+	}
+}
+
 func Run() {
+
+	var wg sync.WaitGroup
+	
+	jobCh := make(chan Job,6)
+	resultCh := make(chan Result,6)
+
+
+	wg.Add(3)
+
+	for i:=1; i<=3; i++ { 
+		go worker(jobCh,resultCh,&wg)
+	}
+		
+	for i := range 6 {
+		jobCh <- Job{Id: i}
+	}
+	close(jobCh)
+
+	go func() { 
+		wg.Wait()
+		close(resultCh)
+	}()	
+
+	for v := range resultCh {
+		fmt.Println(v)
+	}
 
 	// question 4. Close + range
 
@@ -25,8 +67,8 @@ func Run() {
 	// ch := make(chan int)
 	// wg.Add(5)
 
-	// for i := range 5 { 
-	// 	go printId(i,&wg,ch)	
+	// for i := range 5 {
+	// 	go printId(i,&wg,ch)
 	// }
 
 	// go func() {
@@ -34,7 +76,7 @@ func Run() {
 	// 	close(ch)
 	// }()
 
-	// for v:= range ch { 
+	// for v:= range ch {
 	// 	fmt.Println(v)
 	// }
 
