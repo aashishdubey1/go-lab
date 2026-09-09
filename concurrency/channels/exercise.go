@@ -47,13 +47,14 @@ func RunExercise() {
 	var wg sync.WaitGroup
 	wg.Add(workerCount)
 
+	// Adding workers
 	go func() {
-		for i := 0; i < workerCount; i++ {
-			// have to add workers
+		for range workerCount {
 			go workerr(jobCh, resultCh, &wg)
 		}
 	}()
 
+	// Adding jobs
 	go func() {
 		for i := range jobCount {
 			if i == 6 {
@@ -65,6 +66,7 @@ func RunExercise() {
 		close(jobCh)
 	}()
 
+	// Waiting to close resultCh
 	go func() {
 		wg.Wait()
 		close(resultCh)
