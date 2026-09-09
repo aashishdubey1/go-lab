@@ -26,36 +26,37 @@ type Result struct {
 	status string
 }
 
-func worker(job chan Job, result chan Result,wg *sync.WaitGroup) {
+func worker(job chan Job, result chan Result, wg *sync.WaitGroup) {
 	defer wg.Done()
-	for val := range job { 
-		result <- Result{job: val,status: "done"}
+	for val := range job {
+		result <- Result{job: val, status: "done"}
 	}
 }
 
 func Run() {
 
 	var wg sync.WaitGroup
-	
-	jobCh := make(chan Job,6)
-	resultCh := make(chan Result,6)
 
+	jobCh := make(chan Job)
+	resultCh := make(chan Result)
 
 	wg.Add(3)
 
-	for i:=1; i<=3; i++ { 
-		go worker(jobCh,resultCh,&wg)
+	for i := 1; i <= 3; i++ {
+		go worker(jobCh, resultCh, &wg)
 	}
-		
-	for i := range 6 {
-		jobCh <- Job{Id: i}
-	}
-	close(jobCh)
 
-	go func() { 
+	go func() {
+		for i := range 6 {
+			jobCh <- Job{Id: i}
+		}
+		close(jobCh)
+	}()
+
+	go func() {
 		wg.Wait()
 		close(resultCh)
-	}()	
+	}()
 
 	for v := range resultCh {
 		fmt.Println(v)

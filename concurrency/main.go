@@ -40,5 +40,6 @@ func main() {
 	// webchecker.Run()
 	// counter.Run()
 	// jobprocessor.Run()
-	channels.Run()
+	// channels.Run()
+	channels.RunExercise()
 }
