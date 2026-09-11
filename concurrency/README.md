@@ -46,7 +46,7 @@ managed by **go runtime**, not the os threads
 
 #### How ?
 
-### Goroutines(go)
+## Goroutines(go)
 
 independent concurrent thread of execution
 to turn sync function call into async backround tasks
@@ -76,7 +76,7 @@ and to answer where are they all running
 okay so now what ?
 we can add spwan goroutines but how to stop them ?
 
-#### sync.WaitGroup
+## sync.WaitGroup
 
 go provides thread-safe counter. it has 3 methods
 
@@ -97,9 +97,9 @@ another task ?
 okay that's it ?
 maybe i need some more practice and have to solve some questions before moving forward
 
-#### sync.Mutex
+## sync.Mutex
 
-#### Channels
+## Channels
 
 > Do not communicate by sharing memeory, instead share memory by communicating
 
@@ -112,7 +112,7 @@ This model comes from CSP (Communicating Sequential Processes)
 instead of goroutines reading/writing shared memory,
 they run independently and exchange messages through channels
 
-**note dumb**
+**note dump**
 
 - important thing is not necessarily "goroutine 1 sends first and goroutine 2 receives second."
   - Instead, they _synchronize through the channel_.
@@ -143,3 +143,18 @@ they run independently and exchange messages through channels
 - Channel operations don't wait for a fixed amount of time; they wait until the operation can proceed.
 - Buffered channels behave like a FIFO queue → first value sent is normally the first value received.
 - Empty buffer slots don't contain nil or 0; they're simply unused capacity.
+
+
+### Worker Pool 
+
+### Fan-out/Fan-in 
+
+### Pipeline
+
+## Select 
+ 
+- Starting a goroutine that performs an unbuffered send means you need to be sure somebody will eventually receive it.
+- Otherwise you've potentially created a goroutine leak
+
+
+
