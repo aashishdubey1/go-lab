@@ -41,5 +41,5 @@ func main() {
 	// counter.Run()
 	// jobprocessor.Run()
 	// channels.Run()
-	channels.RunExercise()
+	channels.RunEx2()
 }
