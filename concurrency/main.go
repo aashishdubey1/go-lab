@@ -42,5 +42,7 @@ func main() {
 	// jobprocessor.Run()
 	// channels.Run()
 	// channels.RunEx2()
-	channels.RunSelect()
+	// channels.RunSelect()
+	channels.RunEx3()
+	// channels.RunSelect()
 }
