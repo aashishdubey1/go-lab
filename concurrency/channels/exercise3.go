@@ -43,7 +43,6 @@ func worker3(job chan Job3, result chan Result3, done chan struct{}, wg *sync.Wa
 				once.Do(func() {
 					close(done)
 				})
-				return
 			}
 
 			output := Result3{Job: val, Output: val.Value * 10}

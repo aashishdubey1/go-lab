@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/aashishdubey1/go-lab/concurrency/channels"
+	"github.com/aashishdubey1/go-lab/concurrency/context"
 )
 
 // func fetchData(source string,wg *sync.WaitGroup) {
@@ -43,6 +43,8 @@ func main() {
 	// channels.Run()
 	// channels.RunEx2()
 	// channels.RunSelect()
-	channels.RunEx3()
+	// channels.RunEx3()
 	// channels.RunSelect()
+	context.RunContext()
+	//
 }
