@@ -37,7 +37,8 @@ func main() {
 
 	// wg.Wait()
 
-	context.RunTimeoutEx()
+	// context.RunTimeoutEx()
+	context.RunManualCancellation()
 
 	// webchecker.Run()
 	// counter.Run()

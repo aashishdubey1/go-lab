@@ -31,9 +31,10 @@ func worker1(ctx context.Context, wg *sync.WaitGroup) {
 }
 
 func RunTimeoutEx() {
+	var wg sync.WaitGroup
 	ctx, cancel := context.WithTimeout(context.Background(), 2*time.Second)
 	defer cancel()
-	var wg sync.WaitGroup
+
 	wg.Add(1)
 	go worker1(ctx, &wg)
 
