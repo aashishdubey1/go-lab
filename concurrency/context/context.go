@@ -23,15 +23,12 @@ func worker(ctx context.Context, wg *sync.WaitGroup) {
 }
 
 func RunContext() {
-
 	ctx, cancel := context.WithCancel(context.Background())
 	var wg sync.WaitGroup
 	wg.Add(1)
 
 	go worker(ctx, &wg)
-
 	time.Sleep(3 * time.Second)
-
 	cancel()
 	wg.Wait()
 }

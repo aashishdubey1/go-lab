@@ -37,6 +37,8 @@ func main() {
 
 	// wg.Wait()
 
+	context.RunTimeoutEx()
+
 	// webchecker.Run()
 	// counter.Run()
 	// jobprocessor.Run()
@@ -45,6 +47,6 @@ func main() {
 	// channels.RunSelect()
 	// channels.RunEx3()
 	// channels.RunSelect()
-	context.RunContext()
+	// context.RunContext()
 	//
 }
