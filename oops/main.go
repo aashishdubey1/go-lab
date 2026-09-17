@@ -1,9 +1,10 @@
 package main
 
 import (
-	"github.com/aashishdubey1/go-lab/oops/structs"
+	encapsulationcomposition "github.com/aashishdubey1/go-lab/oops/encapsulationComposition"
 )
 
 func main() {
-	structs.RunStructs()
+	// structs.RunStructs()
+	encapsulationcomposition.Run()
 }
