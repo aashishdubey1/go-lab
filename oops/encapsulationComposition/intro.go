@@ -6,5 +6,6 @@ func Run() {
 	fmt.Println("encapsulationComposition rolling")
 
 	// RunEx1()
-	RunEx2()
+	// RunEx2()
+	RunEx3()
 }
