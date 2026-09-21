@@ -1,10 +1,7 @@
 package main
 
-import (
-	encapsulationcomposition "github.com/aashishdubey1/go-lab/oops/encapsulationComposition"
-)
+import "github.com/aashishdubey1/go-lab/oops/interfaces"
 
 func main() {
-	// structs.RunStructs()
-	encapsulationcomposition.Run()
+	interfaces.RunEx2()
 }
